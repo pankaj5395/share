@@ -1,0 +1,62 @@
+
+
+<html>
+  <head>
+   
+  </head>
+
+<script>
+var isMobile = {
+    Android: function() {
+        return /Android/i.test(navigator.userAgent);
+    },
+    BlackBerry: function() {
+        return /BlackBerry/i.test(navigator.userAgent);
+    },
+    iOS: function() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    },
+    Windows: function() {
+        return /IEMobile/i.test(navigator.userAgent);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+    }
+	
+};
+//alert(isMobile.iOS());
+if(isMobile.iOS()){
+	setTimeout(function () { window.location = "http://itunes.apple.com/app/id1178889526"; }, 25);
+	window.location = "petmatch://pet?id="+getParameterByName('id')+"&type="+getParameterByName('type');
+}else if(isMobile.Android()){
+	setTimeout(function () { window.location = "https://play.google.com/store/apps/details?id=com.petmatchco.petmatch"; }, 25);
+	//window.location = "petmatch://pet?id="+getParameterByName('id')+"&type="+getParameterByName('type');
+	window.location="intent:#Intent;action=com.petmatchco.petmatch;category=android.intent.category.DEFAULT;category=android.intent.category.BROWSABLE;S.id="+getParameterByName('id')+";S.type="+getParameterByName('type')+";end";
+}else{
+  
+	alert("Open this link in iPhone,iPad or iPod only...:(")
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                          results = regex.exec(location.search);
+                          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                          }
+/*
+http://stackoverflow.com/questions/13044805/how-to-check-if-an-app-is-installed-from-a-web-page-on-an-iphone
+var now = new Date().valueOf();
+setTimeout(function () {
+    if (new Date().valueOf() - now > 100) return;
+    window.location = "https://itunes.apple.com/appdir";
+}, 25);
+window.location = "appname://";*/
+
+</script>
+
+  <body>
+
+
+
+  </body>
+</html>
